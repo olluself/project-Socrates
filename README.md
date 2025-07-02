@@ -8,7 +8,7 @@ Experience the live version of the project deployed on Vercel:
 
 ### **project-socrates.vercel.app**
 
-*(Please replace `[project-socrates.vercel.app](https://project-socrates-inky.vercel.app)` with your actual Vercel project URL)*
+*https://project-socrates-inky.vercel.app*
 
 ## 🌟 Key Features
 
