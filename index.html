@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Socrates Demo</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="antialiased">
+
+    <!-- Language Switcher -->
+    <div id="lang-switcher" class="fixed top-4 right-4 z-50">
+        <button data-lang="en" class="lang-btn">EN</button>
+        <span class="text-gray-500">|</span>
+        <button data-lang="pl" class="lang-btn">PL</button>
+    </div>
+
+    <div class="container mx-auto px-6 py-12">
+        <h2 class="text-3xl md:text-4xl font-black leading-tight text-center" data-translate="mainTitle">Інтелектуальний помічник <br class="hidden md:block" /> у вашому <span class="gold-accent">Netflix</span>.</h2>
+        <p class="mt-4 text-lg text-center text-gray-400 max-w-3xl mx-auto" data-translate="mainSubtitle">
+            Оберіть фільм, щоб розкрити його опис, а потім натисніть "Socrates Analysis", щоб побачити глибокі уроки, які він пропонує.
+        </p>
+    </div>
+
+    <!-- Carousels Container -->
+    <div id="carousel-container">
+        <!-- Loading State -->
+        <div id="loading-state" class="text-center text-gray-400 p-8">
+            <p data-translate="loading">Завантаження фільмів з бази даних...</p>
+        </div>
+        <!-- Error State -->
+        <div id="error-state" class="hidden text-center text-red-500 p-8">
+            <p data-translate="error">Не вдалося завантажити дані. Будь ласка, перевірте конфігурацію Firebase та підключення до Інтернету.</p>
+        </div>
+    </div>
+
+    <!-- Firebase and main script -->
+    <script src="script.js" type="module"></script>
+</body>
+</html>
