@@ -17,13 +17,14 @@ const translations = {
         mainSubtitle: "Select a movie to reveal its description, then click 'Socrates Analysis' to see the deep lessons it offers.",
         loading: "Loading movies from the database...",
         error: "Failed to load data. Please check your Firebase configuration and internet connection.",
-        carouselRecently: "Recently Analyzed",
-        carouselDramas: "Thought-Provoking Dramas",
-        carouselRecommended: "Recommended For You",
+        carouselTopRated: "Top Rated",
+        carouselRecent: "Recent Hits",
+        carouselClassics: "Classics (Pre-2000)",
         watchButton: "Watch",
         socratesButton: "Socrates Analysis",
         backButton: "← Back to Overview",
-        analysisTitle: "Socrates Analysis"
+        analysisTitle: "Socrates Analysis",
+        noMovies: "No completed movies found."
     },
     pl: {
         backToHome: "Wróć do Głównej",
@@ -31,13 +32,14 @@ const translations = {
         mainSubtitle: "Wybierz film, aby zobaczyć jego opis, a następnie kliknij 'Socrates Analysis', aby poznać głębokie lekcje, które oferuje.",
         loading: "Ładowanie filmów z bazy danych...",
         error: "Nie udało się załadować danych. Sprawdź konfigurację Firebase i połączenie internetowe.",
-        carouselRecently: "Ostatnio analizowane",
-        carouselDramas: "Dramaty skłaniające do myślenia",
-        carouselRecommended: "Polecane dla Ciebie",
+        carouselTopRated: "Najwyżej oceniane",
+        carouselRecent: "Nowości",
+        carouselClassics: "Klasyki (Przed 2000)",
         watchButton: "Oglądaj",
         socratesButton: "Socrates Analysis",
         backButton: "← Wróć do opisu",
-        analysisTitle: "Socrates Analysis"
+        analysisTitle: "Socrates Analysis",
+        noMovies: "Nie znaleziono ukończonych filmów."
     }
 };
 
@@ -75,14 +77,46 @@ function setLanguage(lang) {
     renderCarousels();
 }
 
+function categorizeMovies(movies) {
+    const categories = {
+        topRated: [],
+        recent: [],
+        classics: []
+    };
+    const currentYear = new Date().getFullYear();
+
+    movies.forEach(movie => {
+        const releaseYear = new Date(movie.release_date).getFullYear();
+        if (movie.rating >= 8.0) {
+            categories.topRated.push(movie);
+        }
+        if (releaseYear >= currentYear - 5) {
+            categories.recent.push(movie);
+        }
+        if (releaseYear < 2000) {
+            categories.classics.push(movie);
+        }
+    });
+    return categories;
+}
+
 function renderCarousels() {
     carouselContainer.innerHTML = '';
-    createCarousel(translations[currentLang].carouselRecently, moviesData.slice(0, 12));
-    createCarousel(translations[currentLang].carouselDramas, moviesData.slice(12, 24).reverse());
-    createCarousel(translations[currentLang].carouselRecommended, moviesData.slice(2, 15));
+    const categorizedMovies = categorizeMovies(moviesData);
+
+    if (categorizedMovies.topRated.length > 0) {
+        createCarousel(translations[currentLang].carouselTopRated, categorizedMovies.topRated);
+    }
+    if (categorizedMovies.recent.length > 0) {
+        createCarousel(translations[currentLang].carouselRecent, categorizedMovies.recent);
+    }
+    if (categorizedMovies.classics.length > 0) {
+        createCarousel(translations[currentLang].carouselClassics, categorizedMovies.classics);
+    }
 }
 
 function createCarousel(title, movies) {
+    if (movies.length === 0) return;
     const carousel = document.createElement('div');
     carousel.className = 'carousel-container';
     const titleEl = document.createElement('h3');
@@ -154,7 +188,7 @@ document.body.addEventListener('click', (e) => {
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         const moviesRef = collection(db, "movies");
-        const q = query(moviesRef, where("status", "==", "Completed"), limit(30));
+        const q = query(moviesRef, where("status", "==", "Completed"), limit(100));
         const querySnapshot = await getDocs(q);
         if (querySnapshot.empty) {
             loadingState.innerHTML = `<p data-translate="noMovies">No completed movies found.</p>`;
