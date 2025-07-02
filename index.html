@@ -6,15 +6,11 @@
     <title>Project Socrates</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body class="antialiased">
-
-    <!-- Language Switcher -->
-    <div id="lang-switcher" class="fixed top-4 right-4 z-50">
-        <button data-lang="en" class="lang-btn active">EN</button>
-        <span class="text-gray-500">|</span>
-        <button data-lang="pl" class="lang-btn">PL</button>
-    </div>
 
     <!-- Header -->
     <header class="py-4 px-8 flex justify-between items-center sticky top-0 bg-black/50 backdrop-blur-lg z-40 border-b border-gray-800">
@@ -22,9 +18,14 @@
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4H6V6H4V4Z" fill="#FFD700"/><path d="M4 7H6V9H4V7Z" fill="#FFD700"/><path d="M4 10H6V12H4V10Z" fill="#FFD700"/><path d="M4 13H6V15H4V13Z" fill="#FFD700"/><path d="M4 16H6V18H4V16Z" fill="#FFD700"/><path d="M18 6H20V4H18V6Z" fill="#FFD700"/><path d="M18 9H20V7H18V9Z" fill="#FFD700"/><path d="M18 12H20V10H18V12Z" fill="#FFD700"/><path d="M18 15H20V13H18V15Z" fill="#FFD700"/><path d="M18 18H20V16H18V18Z" fill="#FFD700"/><path fill-rule="evenodd" clip-rule="evenodd" d="M7 2C7.55228 2 8 2.44772 8 3V21C8 21.5523 7.55228 22 7 22H5C4.44772 22 4 21.5523 4 21V3C4 2.44772 4.44772 2 5 2H7ZM19 2C19.5523 2 20 2.44772 20 3V21C20 21.5523 19.5523 22 19 22H17C16.4477 22 16 21.5523 16 21V3C16 2.44772 16.4477 2 17 2H19Z" fill="#A0A0A0"/></svg>
             <span class="text-xl font-bold">Project Socrates</span>
         </div>
-        <a href="#demo" class="hidden md:inline-block text-sm font-semibold hover:text-gold-accent transition-colors" data-translate="headerDemo">
-            See The Demo
-        </a>
+        <div class="flex items-center gap-6">
+             <a href="#demo" class="hidden md:inline-block text-sm font-semibold hover:text-gold-accent transition-colors" data-translate="headerDemo">See The Demo</a>
+             <div id="lang-switcher">
+                <button data-lang="en" class="lang-btn active">EN</button>
+                <span class="text-gray-500">|</span>
+                <button data-lang="pl" class="lang-btn">PL</button>
+            </div>
+        </div>
     </header>
 
     <!-- Hero Section -->
@@ -49,6 +50,11 @@
             <p class="section-subtitle" data-translate="problemSubtitle">
                 Millions of people watch movies but rarely take away anything more than fleeting emotions. We solve the problem of "wasted time" by turning passive viewing into a conscious experience.
             </p>
+            <div class="grid md:grid-cols-3 gap-8 mt-16 max-w-5xl mx-auto">
+                <div class="card text-center"><div class="text-4xl mb-4">🤔</div><h3 class="text-xl font-bold mb-2" data-translate="problemCard1Title">Forgotten Plot</h3><p class="text-gray-400" data-translate="problemCard1Text">85% of viewers can't recall key plot details just one week later.</p></div>
+                <div class="card text-center"><div class="text-4xl mb-4">🍿</div><h3 class="text-xl font-bold mb-2" data-translate="problemCard2Title">Passive Fun</h3><p class="text-gray-400" data-translate="problemCard2Text">Watching movies is often just a way to "kill time" with no long-term benefit.</p></div>
+                <div class="card text-center"><div class="text-4xl mb-4">💡</div><h3 class="text-xl font-bold mb-2" data-translate="problemCard3Title">Lost Lessons</h3><p class="text-gray-400" data-translate="problemCard3Text">Every movie contains valuable lessons, but they remain hidden behind the plot.</p></div>
+            </div>
         </div>
     </section>
 
@@ -59,6 +65,17 @@
             <p class="section-subtitle" data-translate="solutionSubtitle">
                 Our unique 6-agent AI system conducts a deep analysis of the script to uncover practical and valuable lessons for you.
             </p>
+            <div class="mt-16 relative max-w-4xl mx-auto">
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-700 -translate-y-1/2"></div>
+                <div class="grid grid-cols-2 md:grid-cols-6 gap-8 relative">
+                    <div class="agent-card"><div class="agent-bubble">1</div><h4 class="mt-4 font-bold" data-translate="agent1">Analyst</h4><p class="text-sm text-gray-400 mt-1" data-translate="agent1Desc">Creates a summary</p></div>
+                    <div class="agent-card"><div class="agent-bubble">2</div><h4 class="mt-4 font-bold" data-translate="agent2">Psychologist</h4><p class="text-sm text-gray-400 mt-1" data-translate="agent2Desc">Identifies problems</p></div>
+                    <div class="agent-card"><div class="agent-bubble">3</div><h4 class="mt-4 font-bold" data-translate="agent3">Strategist</h4><p class="text-sm text-gray-400 mt-1" data-translate="agent3Desc">Describes the approach</p></div>
+                    <div class="agent-card"><div class="agent-bubble">4</div><h4 class="mt-4 font-bold" data-translate="agent4">Mentor</h4><p class="text-sm text-gray-400 mt-1" data-translate="agent4Desc">Formulates a lesson</p></div>
+                    <div class="agent-card"><div class="agent-bubble">5</div><h4 class="mt-4 font-bold" data-translate="agent5">Editor</h4><p class="text-sm text-gray-400 mt-1" data-translate="agent5Desc">Evaluates quality</p></div>
+                    <div class="agent-card"><div class="agent-bubble">6</div><h4 class="mt-4 font-bold" data-translate="agent6">Marketer</h4><p class="text-sm text-gray-400 mt-1" data-translate="agent6Desc">Creates a value prop</p></div>
+                </div>
+            </div>
         </div>
     </section>
     
@@ -74,7 +91,6 @@
             </a>
         </div>
     </section>
-
 
     <!-- Footer -->
     <footer class="py-16 text-center">
