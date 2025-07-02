@@ -6,11 +6,14 @@
     <title>Project Socrates Demo</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body class="antialiased">
 
     <!-- Header with Back and Language Switcher -->
-    <header class="p-4 flex justify-between items-center sticky top-0 bg-black/50 backdrop-blur-lg z-50">
+    <header class="py-4 px-8 flex justify-between items-center sticky top-0 bg-black/50 backdrop-blur-lg z-50 border-b border-gray-800">
         <a href="../" class="back-link">← <span data-translate="backToHome">Back to Home</span></a>
         <div id="lang-switcher">
             <button data-lang="en" class="lang-btn">EN</button>
