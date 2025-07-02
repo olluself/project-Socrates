@@ -43,24 +43,4 @@ The project is organized into two main parts: the frontend application and the b
 
 ```
 
-## 🧠 Backend & Data Processing
 
-The core analysis is performed by a Python script running in Google Colab. This script:
-
-1. Fetches movie data from various sources.
-2. Uses the 6-agent Gemini-powered system to generate in-depth analyses.
-3. Populates the Firestore database with the results.
-
-You can view the commented source code of the data processing pipeline here:
-
-- **Backend Code:** **View on Google Colab**
-
-*(Please replace the text above with the public "share" link to your Colab notebook).*
-
-### **How to present this to the jury:**
-
-When submitting your project, provide the following links as plain text:
-
-- **Live Demo:** `your-vercel-link.vercel.app`
-- **GitHub Repository:** `github.com/[your-username]/[your-repo-name]`
-- **Backend Code (Colab):** `your-colab-link`
