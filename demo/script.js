@@ -17,6 +17,7 @@ const translations = {
         mainSubtitle: "Select a movie to reveal its description, then click 'Socrates Analysis' to see the deep lessons it offers.",
         loading: "Loading movies from the database...",
         error: "Failed to load data. Please check your Firebase configuration and internet connection.",
+        carouselAll: "All Analyzed Films",
         carouselTopRated: "Top Rated",
         carouselRecent: "Recent Hits",
         carouselClassics: "Classics (Pre-2000)",
@@ -32,6 +33,7 @@ const translations = {
         mainSubtitle: "Wybierz film, aby zobaczyć jego opis, a następnie kliknij 'Socrates Analysis', aby poznać głębokie lekcje, które oferuje.",
         loading: "Ładowanie filmów z bazy danych...",
         error: "Nie udało się załadować danych. Sprawdź konfigurację Firebase i połączenie internetowe.",
+        carouselAll: "Wszystkie przeanalizowane filmy",
         carouselTopRated: "Najwyżej oceniane",
         carouselRecent: "Nowości",
         carouselClassics: "Klasyki (Przed 2000)",
@@ -103,6 +105,9 @@ function categorizeMovies(movies) {
 function renderCarousels() {
     carouselContainer.innerHTML = '';
     const categorizedMovies = categorizeMovies(moviesData);
+
+    // Add a row with all movies first
+    createCarousel(translations[currentLang].carouselAll, moviesData);
 
     if (categorizedMovies.topRated.length > 0) {
         createCarousel(translations[currentLang].carouselTopRated, categorizedMovies.topRated);
