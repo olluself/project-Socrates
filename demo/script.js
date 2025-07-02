@@ -106,9 +106,7 @@ function renderCarousels() {
     carouselContainer.innerHTML = '';
     const categorizedMovies = categorizeMovies(moviesData);
 
-    // Add a row with all movies first
     createCarousel(translations[currentLang].carouselAll, moviesData);
-
     if (categorizedMovies.topRated.length > 0) {
         createCarousel(translations[currentLang].carouselTopRated, categorizedMovies.topRated);
     }
@@ -163,7 +161,14 @@ function openDetails(event) {
     const socratesContent = `<div class="flex items-center gap-3 mb-4 border-b border-gray-700 pb-3"><svg class="gold-accent" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0-3.91 19.85A10 10 0 0 0 12 2zM2 12h5m7 0h5m-7 7v-5m0-5V2"/></svg><h3 class="text-2xl font-bold text-white" data-translate="analysisTitle">${translations[currentLang].analysisTitle}</h3></div><div class="space-y-4">${analysisHTML}</div><div class="mt-8"><button class="back-btn btn-secondary" data-translate="backButton">${translations[currentLang].backButton}</button></div>`;
     detailsPanel.innerHTML = `<div style="background-image: linear-gradient(to top, #181818, rgba(24,24,24,0.7)), url(${movie.backdrop_url}); background-size: cover; background-position: center; padding: 3rem 4%;"><h2 class="text-4xl font-bold">${movie.title}</h2><p class="text-gray-400 mt-2">${new Date(movie.release_date).getFullYear()} | Rating: ${movie.rating.toFixed(1)}</p></div><div class="details-info-container p-8"><div class="info-view overview-view">${overviewContent}</div><div class="info-view socrates-view hidden-view">${socratesContent}</div></div>`;
     parentRow.insertAdjacentElement('afterend', detailsPanel);
-    setTimeout(() => detailsPanel.classList.add('open'), 10);
+    
+    setTimeout(() => {
+        detailsPanel.classList.add('open');
+        // FIXED: Scroll the panel into view after it starts opening
+        setTimeout(() => {
+            detailsPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 150);
+    }, 10);
 }
 
 function toggleAnalysisView(event) {
