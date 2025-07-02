@@ -39,6 +39,37 @@ html {
     max-width: 600px;
     margin: 1rem auto 0;
 }
+.card {
+    background-color: #1F1F1F;
+    border: 1px solid #333;
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+.card:hover {
+    border-color: #FFD700;
+    transform: translateY(-5px);
+}
+.agent-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.agent-bubble {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 9999px;
+    background-color: #333;
+    border: 2px solid #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #FFD700;
+    z-index: 10;
+}
 #lang-switcher .lang-btn {
     font-weight: 600;
     color: #a0a0a0;
